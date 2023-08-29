@@ -16,7 +16,7 @@ import { toast } from "react-hot-toast";
 import Button from "../Button";
 
 const RegisterModal = () => {
-    const RegisterModal = useRegisterModal();
+    const registerModal = useRegisterModal();
     const [isLoading, setIsLoading] = useState(false);
 
     const { 
@@ -36,7 +36,7 @@ const RegisterModal = () => {
         setIsLoading(true);
         axios.post('/api/register', data)
         .then(() =>{
-            RegisterModal.onClose();
+            registerModal.onClose();
         })
         .catch((err) =>{
             toast.error('Something Went Wrong')
@@ -69,7 +69,7 @@ const RegisterModal = () => {
                     <div>
                         Already have an account?
                     </div>
-                    <div onClick={RegisterModal.onClose} className="text-neutral-800 cursor-pointer hover:underline">
+                    <div onClick={registerModal.onClose} className="text-neutral-800 cursor-pointer hover:underline">
                         Login
                     </div>
                 </div>
@@ -80,10 +80,10 @@ const RegisterModal = () => {
     return (  
         <Modal 
         disabled={isLoading}
-        isOpen={RegisterModal.isOpen}
+        isOpen={registerModal.isOpen}
         title="Register"
         actionLabel="Continue"
-        onClose={RegisterModal.onClose}
+        onClose={registerModal.onClose}
         onSubmit={handleSubmit(onSubmit)}
         body={bodyContent}
         footer={footerContent}

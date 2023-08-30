@@ -44,6 +44,7 @@ const LoginModal = () => {
 				toast.success("Logged in 🎉");
 				router.refresh();
 				loginModal.onClose();
+				
 			}
 		});
 	};
@@ -78,13 +79,13 @@ const LoginModal = () => {
 				outlined
 				label="Continue with google"
 				icon={FcGoogle}
-				onClick={() => {}}
+				onClick={() => signIn('google')}
 			/>
 			<Button
 				outlined
 				label="Continue with Github"
 				icon={AiFillGithub}
-				onClick={() => {}}
+				onClick={() => signIn('github')}
 			/>
 			<div
 				className="

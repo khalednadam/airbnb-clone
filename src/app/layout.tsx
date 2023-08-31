@@ -22,11 +22,15 @@ export default async function RootLayout({
 	const currentUser = await getCurrentUser();
 	return (
 		<html lang="en">
+			<head>
+			<link rel="icon" href="/favicon.ico" sizes="any" />
+			</head>
 			<body className={font.className}>
 				<ToasterProvider />
 				<RegisterModal />
 				<LoginModal />
 				<Navbar currentUser={currentUser} />
+				
 				{children}
 			</body>
 		</html>

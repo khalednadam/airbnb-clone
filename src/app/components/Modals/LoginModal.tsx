@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unescaped-entities */
 "use client";
 import axios from "axios";
 import { AiFillGithub } from "react-icons/ai";
@@ -96,12 +97,12 @@ const LoginModal = () => {
             "
 			>
 				<div className="flex items-center gap-2 justify-center">
-					<div>Already have an account?</div>
+					<div>Don't have an account?</div>
 					<div
-						onClick={loginModal.onClose}
+						onClick={() => {loginModal.onClose(); registerModal.onOpen()} }
 						className="text-neutral-800 cursor-pointer hover:underline"
 					>
-						Login
+						Register
 					</div>
 				</div>
 			</div>
@@ -112,7 +113,7 @@ const LoginModal = () => {
 		<Modal
 			disabled={isLoading}
 			isOpen={loginModal.isOpen}
-			title="Register"
+			title="Login"
 			actionLabel="Continue"
 			onClose={loginModal.onClose}
 			onSubmit={handleSubmit(onSubmit)}

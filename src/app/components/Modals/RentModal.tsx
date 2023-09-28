@@ -6,6 +6,8 @@ import Heading from "../Heading";
 import { categories } from "../Categories";
 import CategoryInput from "../Inputs/CategoryInput";
 import { FieldValues, useForm } from "react-hook-form";
+import CountriesInput from "../Inputs/CountriesInput";
+import dynamic from "next/dynamic";
 
 enum STEPS {
     CATEGORY = 0,
@@ -43,7 +45,19 @@ const RentModal = () => {
         }
     });
 
-    const category = watch('category')
+    const category = watch('category');
+    const location = watch('location');
+    const Map = useMemo(() => dynamic(() => import('../Map'), {
+        ssr: false
+    }), [location])
+
+    const setCustomValue = (id: string, value: any) =>{
+        setValue(id, value, {
+            shouldValidate: true,
+            shouldDirty: true,
+            shouldTouch: true
+        }) 
+    }
 
     const onBack = () =>{
         setStep((value) => value - 1);
@@ -70,27 +84,38 @@ const RentModal = () => {
         <div className="flex flex-col gap-8">
             <Heading title="Which of these describes your place?" subtitle="Pick a category" />
             <div className="grid grid-cols-1 md:grid-cols-2 gap-3 max-h-[50vh] overflow-y-auto">
-                {categories.map((category) =>(
-                    <div key={category.label} className="col-span-1">
+                {categories.map((item) =>(
+                    <div key={item.label} className="col-span-1">
                         <CategoryInput 
-                        onClick={() => {}}
-                        selected={false}
-                        label={category.label}
-                        icon={category.icon}
-                        key={category.label}
+                        onClick={(category) => setCustomValue('category', category)}
+                        selected={item.label === category}
+                        label={item.label}
+                        icon={item.icon}
+                        key={item.label}
                          />
                     </div>
                 ))}
             </div>
         </div>
     )
-    
+    if(step === STEPS.LOCATION){
+        bodyContent = (
+            <div className="flex flex-col gap-8">
+                <Heading title="Where is your place located?" 
+                subtitle="Help people find you!" />
+                <CountriesInput 
+                value={location}
+                onChange={(value) => setCustomValue('location', value)}  />
+                <Map center={location.latLng} />
+            </div>
+        )
+    }
     return (
         <Modal
         title="Airbnb you home!"
         isOpen={rentModal.isOpen}
         onClose={rentModal.onClose}
-        onSubmit={rentModal.onClose}
+        onSubmit={onNext}
         actionLabel={actionLabel}
         secondaryActionLabel={secondaryActionLabel}
         secondaryAction={STEPS.CATEGORY ? undefined : onBack}

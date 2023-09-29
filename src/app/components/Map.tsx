@@ -21,7 +21,6 @@ interface MapProps {
 }
 const Map: React.FC<MapProps> = ({ center }) => {
 	return (
-        <div className="bg-red-200">
 
         <MapContainer 
         center={center as L.LatLngExpression || [51, -0.09] }
@@ -30,12 +29,10 @@ const Map: React.FC<MapProps> = ({ center }) => {
         className="h-[35vh] rounded-lg"
         >
             <TileLayer 
-            attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
             />
              { center && <Marker position={center as L.LatLngExpression} /> }
         </MapContainer>
-        </div>
     );
 };
 

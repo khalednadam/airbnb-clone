@@ -23,6 +23,7 @@ const CountriesInput: React.FC<CountriesInputProps> = ({
     return ( 
         <div>
             <Select
+            className="z-50"
             isClearable
             placeholder="Anywhere"
             options={getAll()}
@@ -43,8 +44,9 @@ const CountriesInput: React.FC<CountriesInputProps> = ({
             )}
             classNames={{
                 control: () => 'p-3 border-2',
-                input: () => 'text-lg text-green-600',
-                option: () => 'text-lg text-green-600',
+                input: () => 'text-lg',
+                option: () => 'text-lg ',
+                menuList: () => 'z-50'
 
                 
             }}

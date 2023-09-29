@@ -131,8 +131,8 @@ const RentModal = () => {
 		bodyContent = (
 			<div className="flex flex-col gap-8">
 				<Heading
-					title="Share sine basics about your place"
-					subtitle="Whats amenities do you have?"
+					title="Share some basics about your place"
+					subtitle="What amenities do you have?"
 				/>
 				<CounterInput
 					onChange={(value) => setCustomValue("guestCount", value)}

@@ -8,8 +8,3 @@
 .leftlet-top{
     z-index: 0 !important;
 }
-
-.react-select-2-listbox{
-    z-index: 10000 !important;
-    background-color: blue !important;
-}

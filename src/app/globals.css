@@ -6,5 +6,5 @@
 .leftlet-control,
 .leftlet-pane,
 .leftlet-top{
-    z-index: 0 !important;
+    z-index: 1000 !important;
 }

@@ -1,3 +1,10 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.leftlet-bottom,
+.leftlet-control,
+.leftlet-pane,
+.leftlet-top{
+    z-index: 0 !important;
+}
